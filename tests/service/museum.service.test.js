@@ -1,7 +1,12 @@
 const museumService = require("../../service/museum.service");
 const { sampleMuseums, testTimestamp } = require("../testData/sampleInput.js");
 
-test("Date - July 2014, Ignore - 'avila_adobe'", () => {
+test("getMuseumData", async () => {
+  const result = await museumService.getMuseumData();
+  expect(result.status).toEqual(200);
+});
+
+test("filterDataByDate - Date - July 2014, Ignore - 'avila_adobe'", () => {
   expectedObject = {
     attendance: {
       month: "July",
@@ -30,7 +35,7 @@ test("Date - July 2014, Ignore - 'avila_adobe'", () => {
   expect(data).toMatchObject(expectedObject);
 });
 
-test("Date - July 2014", () => {
+test("filterDataByDate - Date - July 2014", () => {
   expectedObject = {
     attendance: {
       month: "July",
@@ -50,7 +55,7 @@ test("Date - July 2014", () => {
   expect(data).toMatchObject(expectedObject);
 });
 
-test("Date - July 2014", () => {
+test("filterDataByDate - Date - July 2014", () => {
   expectedObject = {
     attendance: {
       month: "July",
@@ -66,6 +71,10 @@ test("Date - July 2014", () => {
       },
     },
   };
-  const data = museumService.filterDataByDate(testTimestamp, "123", sampleMuseums);
+  const data = museumService.filterDataByDate(
+    testTimestamp,
+    "123",
+    sampleMuseums
+  );
   expect(data).toMatchObject(expectedObject);
 });
