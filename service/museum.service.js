@@ -2,8 +2,8 @@ const axios = require("axios");
 var _ = require("lodash");
 
 const museumService = {
-  getMuseumData: () => {
-    return axios.get("https://data.lacity.org/resource/trxm-jn3c.json");
+  getMuseumData: async () => {
+    return await axios.get("https://data.lacity.org/resource/trxm-jn3c.json");
   },
   filterDataByDate: (timestamp, ignoreMuseum, dataObj) => {
     const compareDate = timestamp
